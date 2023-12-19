@@ -1,35 +1,35 @@
-import { TypeGatewayInMemory } from "../../adapters/inmemory/typeGateway.inmemory"
+import { TypeGatewayLocalStorage } from "../../adapters/localStorage/typeGateway.localStorage"
 import { TypeModel } from "../../models/type.model"
 
 describe('Type gateway in memory', () => {
     let newTypes: TypeModel[]
-    let inMemoryTypes: TypeGatewayInMemory
+    let onLocalStorageType: TypeGatewayLocalStorage
 
     beforeEach(() => {
         newTypes = [
             { id: 1, name: 'Wedding', infos: ''},
             { id: 2, name: 'Reunion', infos: ''}
         ]
-        inMemoryTypes = new TypeGatewayInMemory().withTypes(newTypes)
+        onLocalStorageType = new TypeGatewayLocalStorage().withTypes(newTypes)
     })
 
     it('should retrieve all types', (done) => {
-        inMemoryTypes.retrieveAll().subscribe(types => {
+        onLocalStorageType.retrieveAll().subscribe(types => {
             expect(types).toEqual(newTypes)
             done()
         })
     })
 
     it('should retrieve one type by id', (done) => {
-        inMemoryTypes.retrieveOneById(1).subscribe(type => {
+        onLocalStorageType.retrieveOneById(1).subscribe(type => {
             expect(type).toEqual(newTypes[0])
             done()
         })
     })
 
     it('should add new type', (done) => {
-        const typeToAdded: TypeModel = {id: 0, name: 'Job', infos: ''}
-        inMemoryTypes.addNew(typeToAdded).subscribe(types => {
+        const typeToAdded: TypeModel = { id: 0, name: 'Job', infos: '' }
+        onLocalStorageType.addNew(typeToAdded).subscribe(types => {
             expect(types).toContainEqual(typeToAdded)
             done()
         })
@@ -37,7 +37,7 @@ describe('Type gateway in memory', () => {
 
     it('should edit the type specified', (done) => {
         const typeEdited: TypeModel = { id: 2, name: 'Sortie', infos: '' }
-        inMemoryTypes.edit(typeEdited).subscribe(types => {
+        onLocalStorageType.edit(typeEdited).subscribe(types => {
             if(types != null)
                 expect(types).toContainEqual(typeEdited)
             done()
@@ -46,7 +46,7 @@ describe('Type gateway in memory', () => {
 
     it('should delete the type specified by id', (done) => {
         const typeToDeleted = newTypes[0]
-        inMemoryTypes.delete(typeToDeleted).subscribe(types => {
+        onLocalStorageType.delete(typeToDeleted).subscribe(types => {
             if(types != null)
                 expect(types).not.toContain(typeToDeleted)
             done()

@@ -20,20 +20,24 @@ export class TypeGatewayInMemory extends TypeGateway {
         return of(typeRetrieved || null)
     }
 
-    addNew(newType: TypeModel): Observable<TypeModel> {
+    addNew(newType: TypeModel): Observable<TypeModel[]> {
         newType.id = this.getlastId() + 1
         this.types = [...this.types, newType]
-        return of(newType)
+        return of(this.types)
     }
 
-    edit(typeEdited: TypeModel): Observable<TypeModel> {
+    edit(typeEdited: TypeModel): Observable<TypeModel[]|null> {
+        if(this.types.find(type => type === typeEdited) == undefined)
+            return of(null)
         this.types = this.types.map(type => type.id == typeEdited.id ? typeEdited : type)
-        return of(typeEdited)
+        return of(this.types)
     }
 
-    delete(id: number): Observable<boolean> {
-        this.types = this.types.filter(type => type.id != id)
-        return of(true)
+    delete(typeToDeleted: TypeModel): Observable<TypeModel[]|null> {
+        if(this.types.find(type => type.id === typeToDeleted.id) == undefined)
+            return of(null)
+        this.types = this.types.filter(type => type.id != typeToDeleted.id)
+        return of(this.types)
     }
 
     private getlastId(): number {

@@ -7,5 +7,4 @@ export interface TypeDTO {
 }
 
 export interface createUpdateDeleteDTO {
-    
 }

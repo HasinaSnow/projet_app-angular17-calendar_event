@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 import { EventGateway } from "../../ports/event.gateways";
 import { EventDTO } from "./DTO/event.DTD";
 import { EventBuilder } from "../../models/builder/event.builder";
+import { BaseDTO } from "./DTO/base.DTO";
 
 @Injectable({
   providedIn: 'root',
@@ -15,8 +16,8 @@ export class EventGatewayHttp extends EventGateway {
     private httpClient: HttpClient = inject(HttpClient)
 
     retrieveAll(): Observable<EventModel[]> {
-        return this.httpClient.get<EventDTO[]>(URL_BASE + URL_EVENT + URL_GET_ALL).pipe(
-            map<EventDTO[],EventModel[]>(events => events.map(event => {
+        return this.httpClient.get<BaseDTO>(URL_BASE + URL_EVENT + URL_GET_ALL).pipe(
+            map<BaseDTO,EventModel[]>(response => response.data.events.map((event: EventDTO) => {
                 return new EventBuilder()
                     .withId(event.id)
                     .withDate(event.date)
@@ -27,27 +28,33 @@ export class EventGatewayHttp extends EventGateway {
     }
 
     retrieveOneById(id: number): Observable<EventModel|null> {
-        return this.httpClient.get<EventDTO>(URL_BASE + URL_EVENT + URL_GET_ONE + `/${id}`).pipe(
-            map<EventDTO, EventModel>(event => {
+        return this.httpClient.get<BaseDTO>(URL_BASE + URL_EVENT + URL_GET_ONE + `/${id}`).pipe(
+            map<BaseDTO, EventModel>(response => {
                 return new EventBuilder()
-                    .withId(event.id)
-                    .withDate(event.date)
-                    .withTypeRef(event.typeRef)
+                    .withId(response.data.event.id)
+                    .withDate(new Date(response.data.event.date))
+                    .withTypeRef(response.data.event.typeRef)
                     .build()
             })
         )
     }
 
     addNew(newEvent: EventModel): Observable<boolean> {
-        return this.httpClient.post<boolean>(URL_BASE + URL_EVENT + URL_ADD_NEW, newEvent)
+        return this.httpClient.post<BaseDTO>(URL_BASE + URL_EVENT + URL_ADD_NEW, newEvent).pipe(
+            map<BaseDTO, boolean>(data => data.status.success ? true : false)
+        )
     }
 
     edit(eventEdited: EventModel): Observable<boolean> {
-        return this.httpClient.put<boolean>(URL_BASE + URL_EVENT + URL_EDIT, eventEdited)
+        return this.httpClient.put<BaseDTO>(URL_BASE + URL_EVENT + URL_EDIT, eventEdited).pipe(
+            map<BaseDTO, boolean>(data => data.status.success ? true : false)
+        )
     }
 
     delete(eventToDeleted: EventModel): Observable<boolean> {
-        return this.httpClient.delete<boolean>(URL_BASE + URL_EVENT + URL_DELETE + `/${eventToDeleted.id}`)
+        return this.httpClient.delete<BaseDTO>(URL_BASE + URL_EVENT + URL_DELETE + `/${eventToDeleted.id}`).pipe(
+            map<BaseDTO, boolean>(data => data.status.success ? true : false)
+        )
     }
 
 }

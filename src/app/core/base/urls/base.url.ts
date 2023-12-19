@@ -7,3 +7,4 @@ export const URL_EDIT = '/edit'
 export const URL_DELETE = '/delete'
 
 export const URL_TYPE = '/types'
+export const URL_EVENT = '/events'

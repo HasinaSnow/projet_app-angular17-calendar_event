@@ -1,7 +1,7 @@
 import { TypeGatewayLocalStorage } from "../../adapters/localStorage/typeGateway.localStorage"
 import { TypeModel } from "../../models/type.model"
 
-describe('Type gateway in memory', () => {
+describe('Type gateway in localStorage', () => {
     let newTypes: TypeModel[]
     let onLocalStorageType: TypeGatewayLocalStorage
 

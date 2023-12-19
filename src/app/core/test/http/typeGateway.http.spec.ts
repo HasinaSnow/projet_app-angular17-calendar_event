@@ -5,7 +5,7 @@ import { TypeDTO } from "../../adapters/http/DTO/type.DTO"
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from "@angular/core/testing"
 
-describe('Type gateway in memory', () => {
+describe('Type gateway on http', () => {
     let newTypes: TypeModel[]
     let typeHttp: TypeGatewayHttp
     let httpTestingController: HttpTestingController;

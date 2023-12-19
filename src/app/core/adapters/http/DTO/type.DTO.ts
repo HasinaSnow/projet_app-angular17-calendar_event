@@ -5,3 +5,7 @@ export interface TypeDTO {
     created: Date
     updated: Date|null
 }
+
+export interface createUpdateDeleteDTO {
+    
+}

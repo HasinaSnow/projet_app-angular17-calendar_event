@@ -27,7 +27,7 @@ export class TypeGatewayInMemory extends TypeGateway {
     }
 
     edit(typeEdited: TypeModel): Observable<TypeModel[]|null> {
-        if(this.types.find(type => type === typeEdited) == undefined)
+        if(this.types.find(type => type.id === typeEdited.id) == undefined)
             return of(null)
         this.types = this.types.map(type => type.id == typeEdited.id ? typeEdited : type)
         return of(this.types)

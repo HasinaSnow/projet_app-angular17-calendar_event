@@ -19,8 +19,8 @@ describe('user gateway on http', () => {
         httpTestingController = TestBed.inject(HttpTestingController);
         userHttp = TestBed.inject(UserGatewayHttp);
         newUsers = [
-            { id: 1, name: 'user 1', email: 'userEmail', password: '', rulesRef: [1, 2]},
-            { id: 2, name: 'user 2', email: 'userEmail', password: '', rulesRef: [1, 2]}
+            { id: 1, name: 'user 1', email: 'userEmail', rulesRef: [1, 2]},
+            { id: 2, name: 'user 2', email: 'userEmail', rulesRef: [1, 2]}
         ]
         response = {
             status: {
@@ -74,7 +74,7 @@ describe('user gateway on http', () => {
             { id: 2, name: 'user 2', email: 'userEmail', rulesRef: [1, 2], created: new Date(2023, 11, 14), updated: null}
         ]
         response.data = { users: fakeData }
-        const newUser: UserModel = { id: 2, name: 'user 2', email: 'userEmail', password: '', rulesRef: [1, 2]}
+        const newUser: UserModel = { id: 2, name: 'user 2', email: 'userEmail', rulesRef: [1, 2]}
 
         userHttp.addNew(newUser).subscribe(users => {
             expect(users).toContainEqual(newUser)
@@ -93,7 +93,7 @@ describe('user gateway on http', () => {
             { id: 2, name: 'user 2', email: 'userEmail', rulesRef: [1, 2], created: new Date(2023, 11, 14), updated: null}
         ]
         response.data = { users: fakeData }
-        const userEdited: UserModel = { id: 2, name: 'user 2', email: 'userEmail', password: '', rulesRef: [1, 2]}
+        const userEdited: UserModel = { id: 2, name: 'user 2', email: 'userEmail', rulesRef: [1, 2]}
 
         userHttp.edit(userEdited).subscribe(users => {
             expect(users).toContainEqual(userEdited)
@@ -113,7 +113,7 @@ describe('user gateway on http', () => {
             { id: 2, name: 'user 2', email: 'userEmail', rulesRef: [1, 2], created: new Date(2023, 11, 14), updated: null}
         ]
         response.data = { users: fakeData}
-        const userToDeleted: UserModel = { id: 2, name: 'user 2', email: 'userEmail', password: '', rulesRef: [1, 2]}
+        const userToDeleted: UserModel = { id: 2, name: 'user 2', email: 'userEmail', rulesRef: [1, 2]}
 
         userHttp.delete(userToDeleted).subscribe(users => {
             expect(users).not.toContain(userToDeleted)

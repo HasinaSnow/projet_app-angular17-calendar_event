@@ -8,8 +8,8 @@ describe('User gateway in localStorage', () => {
 
     beforeEach(() => {
         newUsers = [
-            { id: 1, name: 'user 1', email: 'userEmail', password: 'userPass', rulesRef: [1, 2]},
-            { id: 2, name: 'user 2', email: 'userEmail', password: 'userPass', rulesRef: [1, 2]}
+            { id: 1, name: 'user 1', email: 'userEmail', rulesRef: [1, 2]},
+            { id: 2, name: 'user 2', email: 'userEmail', rulesRef: [1, 2]}
         ]
         onLocalStorageUser = new UserGatewayLocalStorage().withUsers(newUsers)
     })
@@ -29,7 +29,7 @@ describe('User gateway in localStorage', () => {
     })
 
     it('should add new User', (done) => {
-        const UserToAdded: UserModel = { id: 2, name: 'user 3', email: 'userEmail', password: 'userPass', rulesRef: [1, 2]}
+        const UserToAdded: UserModel = { id: 2, name: 'user 3', email: 'userEmail', rulesRef: [1, 2]}
         onLocalStorageUser.addNew(UserToAdded).subscribe(Users => {
             expect(Users).toContainEqual(UserToAdded)
             done()
@@ -37,7 +37,7 @@ describe('User gateway in localStorage', () => {
     })
 
     it('should edit the User specified', (done) => {
-        const UserEdited: UserModel = { id: 2, name: 'user 2', email: 'userEmailEdited', password: 'userPass', rulesRef: [1, 2]}
+        const UserEdited: UserModel = { id: 2, name: 'user 2', email: 'userEmailEdited', rulesRef: [1, 2]}
         onLocalStorageUser.edit(UserEdited).subscribe(Users => {
             if(Users != null)
                 expect(Users).toContainEqual(UserEdited)

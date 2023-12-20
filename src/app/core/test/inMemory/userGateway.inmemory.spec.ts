@@ -8,8 +8,8 @@ describe('user gateway in memory', () => {
 
     beforeEach(() => {
         newUsers = [
-            { id: 1, name: 'user 1', email: 'userEmail', password: 'userPass', rulesRef: [1, 2]},
-            { id: 2, name: 'user 2', email: 'userEmail', password: 'userPass', rulesRef: [1, 2]}
+            { id: 1, name: 'user 1', email: 'userEmail', rulesRef: [1, 2]},
+            { id: 2, name: 'user 2', email: 'userEmail', rulesRef: [1, 2]}
         ]
         inMemoryUsers = new UserGatewayInMemory().withUsers(newUsers)
     })
@@ -29,7 +29,7 @@ describe('user gateway in memory', () => {
     })
 
     it('should add new user', (done) => {
-        const userToAdded: UserModel = { id: 3, name: 'user 3', email: 'userEmail', password: 'userPass', rulesRef: [1, 2]}
+        const userToAdded: UserModel = { id: 3, name: 'user 3', email: 'userEmail', rulesRef: [1, 2]}
         inMemoryUsers.addNew(userToAdded).subscribe(Users => {
             expect(Users).toContainEqual(userToAdded)
             done()
@@ -37,7 +37,7 @@ describe('user gateway in memory', () => {
     })
 
     it('should edit the user specified', (done) => {
-        const userEdited: UserModel = { id: 2, name: 'user 1', email: 'userEmailEdited', password: 'userPass', rulesRef: [1, 2]}
+        const userEdited: UserModel = { id: 2, name: 'user 1', email: 'userEmailEdited', rulesRef: [1, 2]}
         inMemoryUsers.edit(userEdited).subscribe(Users => {
             if(Users != null)
                 expect(Users).toContainEqual(userEdited)

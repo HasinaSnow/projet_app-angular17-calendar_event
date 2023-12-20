@@ -4,7 +4,6 @@ export class UserBuilder {
     protected id: number
     protected name: string
     protected email: string
-    protected password: string
     protected rulesRef: number[]
 
     withId(id: number): UserBuilder {
@@ -22,18 +21,13 @@ export class UserBuilder {
         return this
     }
 
-    withPassword(password: string): UserBuilder {
-        this.password = password
-        return this
-    }
-
     withRulesRef(rulesRef: number[]): UserBuilder {
         this.rulesRef = rulesRef
         return this
     }
 
     build(): UserModel {
-        return { id: this.id, name: this.name, email: this.email, password: this.password, rulesRef: this.rulesRef }
+        return { id: this.id, name: this.name, email: this.email, rulesRef: this.rulesRef }
     }
 
 }

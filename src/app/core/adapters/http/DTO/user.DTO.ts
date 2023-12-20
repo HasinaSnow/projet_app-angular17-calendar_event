@@ -1,7 +1,8 @@
-export interface TypeDTO {
+export interface UserDTO {
     id: number,
     name: string,
-    description: string,
+    email: string,
+    rulesRef: number[]
     created: Date
     updated: Date|null
 }

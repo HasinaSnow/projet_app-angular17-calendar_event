@@ -1,0 +1,42 @@
+<div class="event-items w-full grid grid-cols-5">
+    <!-- left -->
+    <div class="news col-span-2">
+        <!--  -->
+        <div class="content pl-2 mb-3">
+            <p class="font-semibold text-xl pb-2">Location</p>
+            <p class="font-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam atque autem accusantium neque, optio maiores molestias, Mollitia. </p>
+        </div>
+
+        <button class="ml-2 flex text-base font-semibold text-gray-100 cursor-pointer items-center gap-1 hover:bg-indigo-600 bg-indigo-700 p-2 rounded-md shadow">
+            <i class="material-icons text-base">emoji_events</i>
+            <p class="">Add new</p>
+        </button>
+    </div>
+
+    <!-- right -->
+    <div class="list bg-gray-800 rounded-md p-4 col-span-3">
+        <!-- header -->
+        <div class="header flex justify-between items-center gap-1 mb-3">
+            <!-- left -->
+            <div class="left ">
+                <!-- title -->
+                <p class="title flex items-center gap-1 text-lg font-semibold">
+                    <i class="material-icons">list</i>
+                    <span>Location list</span>
+                </p>
+            </div>
+            <!-- right -->
+            <div class="right flex items-center gap-2">
+                <!-- order -->
+                <app-dropdown [items]="orderItems" [iconDropdown]="'sort'" (valueEmitted)="onOrderValue($event)"></app-dropdown>
+            </div>
+        </div>
+        <!-- content -->
+        <div class="content py-3 flex flex-col gap-4 max-h-72 overflow-y-auto">
+            @for (place of places(); track $index) {
+                <app-card-place [placeItem]="place"></app-card-place>
+            }
+        </div>
+    </div>
+
+</div>

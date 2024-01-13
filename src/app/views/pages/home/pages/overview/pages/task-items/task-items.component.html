@@ -1,0 +1,193 @@
+<div class="event-items w-full grid grid-cols-5">
+    <!-- left -->
+    <div class="news col-span-2">
+        <!--  -->
+        <div class="content pl-2 mb-3">
+            <p class="font-semibold text-xl pb-2">Task</p>
+            <p class="font-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam atque autem accusantium neque, optio maiores molestias, Mollitia. </p>
+        </div>
+
+        <button class="ml-2 flex text-base font-semibold text-gray-100 cursor-pointer items-center gap-1 hover:bg-indigo-600 bg-indigo-700 p-2 rounded-md shadow">
+            <i class="material-icons text-base">emoji_events</i>
+            <p class="">Add new</p>
+        </button>
+    </div>
+
+    <!-- right -->
+    <div class="list bg-gray-800 rounded-md p-4 col-span-3">
+        <!-- header -->
+        <div class="header flex justify-between items-center gap-1 mb-3">
+            <!-- left -->
+            <div class="left ">
+                <!-- title -->
+                <p class="title flex items-center gap-1 text-lg font-semibold">
+                    <i class="material-icons">list</i>
+                    <span>Task list</span>
+                </p>
+            </div>
+            <!-- right -->
+            <div class="right flex items-center gap-2">
+                <!-- order -->
+                <app-dropdown [items]="orderItems" [iconDropdown]="'sort'" (valueEmitted)="onOrderValue($event)"></app-dropdown>
+                <!-- filter -->
+                <app-dropdown [items]="filterDateItems" [iconDropdown]="'filter_alt'" (valueEmitted)="onFilterValue($event)"></app-dropdown>
+            </div>
+        </div>
+        <!-- content -->
+        <div class="content py-3 flex flex-col gap-4 max-h-72 overflow-y-auto">
+
+            @for (task of tasks(); track $index) {
+                <app-card-task [taskItem]="task"></app-card-task>
+            }
+
+            <!-- card task -->
+            <div class="card-event relative p-2 rounded-lg bg-gray-950">
+                <!-- icon -->
+                <div class="absolute -top-2 left-3 font-semibold flex flex-col items-center p-2 px-2 rounded shadow bg-green-600 cursor-pointer">
+                    <i class="material-icons-outlined">check_circle</i>
+                    <span class="text-xs">done</span>
+                </div>
+                <!-- new -->
+                <span class="absolute right-4 -top-2 px-2 bg-yellow-400 text-gray-950 font-semibold shadow-md rounded-lg">New</span>
+
+                <!-- content -->
+                <div class="flex flex-col ml-12 px-2">
+                    <!-- task action -->
+                    <span class="flex items-center gap-1 text-base font-semibold">
+                        <i class="material-icons text-base">task</i>
+                        WorkShop in the office.
+                    </span>
+                    <!-- event -->
+                    <span class="text-sm flex items-center gap-1 text-gray-500">
+                        <i class="material-icons text-base">event</i>
+                        7 jan 2024 | customers
+                    </span>
+                    <div class="type flex justify-between">
+                        <!-- service concerned -->
+                        <span class="text-sm flex items-center gap-1 text-gray-500">
+                            <i class="material-icons text-base">medical_information</i>
+                            Decoration
+                        </span>
+                        <!-- member attributed -->
+                        <span class="text-sm flex items-center gap-1 text-gray-500">
+                            <i class="material-icons text-base">person</i>
+                            To J. Wicks
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- card task -->
+            <div class="card-event relative p-2 rounded-lg bg-gray-950">
+                <!-- icon -->
+                <div class="absolute left-3 -top-2 font-semibold flex flex-col items-center p-2 px-2 rounded shadow border border-gray-700 text-gray-700 bg-transparent cursor-pointer">
+                    <i class="material-icons-outlined">check_circle</i>
+                    <span class="text-xs">done</span>
+                </div>
+                <!-- new -->
+                <span class="absolute right-4 -top-2 px-2 bg-yellow-400 text-gray-950 font-semibold shadow-md rounded-lg">New</span>
+
+                <!-- content -->
+                <div class="flex flex-col ml-12 px-2">
+                    <!-- task action -->
+                    <span class="flex items-center gap-1 text-base font-semibold">
+                        <i class="material-icons text-base">task</i>
+                        WorkShop in the office.
+                    </span>
+                    <!-- event -->
+                    <span class="text-sm flex items-center gap-1 text-gray-500">
+                        <i class="material-icons text-base">event</i>
+                        7 jan 2024 | customers
+                    </span>
+                    <div class="type flex justify-between">
+                        <!-- service concerned -->
+                        <span class="text-sm flex items-center gap-1 text-gray-500">
+                            <i class="material-icons text-base">medical_information</i>
+                            Decoration
+                        </span>
+                        <!-- member attributed -->
+                        <span class="text-sm flex items-center gap-1 text-gray-500">
+                            <i class="material-icons text-base">person</i>
+                            To J. Wicks
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- card task -->
+            <div class="card-event relative p-2 rounded-lg bg-gray-950">
+                <!-- icon -->
+                <div class="absolute -top-2 left-3 font-semibold flex flex-col items-center p-2 px-2 rounded shadow bg-green-600 cursor-pointer">
+                    <i class="material-icons-outlined">check_circle</i>
+                    <span class="text-xs">done</span>
+                </div>
+                <!-- new -->
+                <span class="absolute right-4 -top-2 px-2 bg-yellow-400 text-gray-950 font-semibold shadow-md rounded-lg">New</span>
+
+                <!-- content -->
+                <div class="flex flex-col ml-12 px-2">
+                    <!-- task action -->
+                    <span class="flex items-center gap-1 text-base font-semibold">
+                        <i class="material-icons text-base">task</i>
+                        WorkShop in the office.
+                    </span>
+                    <!-- event -->
+                    <span class="text-sm flex items-center gap-1 text-gray-500">
+                        <i class="material-icons text-base">event</i>
+                        7 jan 2024 | customers
+                    </span>
+                    <div class="type flex justify-between">
+                        <!-- service concerned -->
+                        <span class="text-sm flex items-center gap-1 text-gray-500">
+                            <i class="material-icons text-base">medical_information</i>
+                            Decoration
+                        </span>
+                        <!-- member attributed -->
+                        <span class="text-sm flex items-center gap-1 text-gray-500">
+                            <i class="material-icons text-base">person</i>
+                            To J. Wicks
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- card task -->
+            <div class="card-event relative p-2 rounded-lg bg-gray-950">
+                <!-- icon -->
+                <div class="absolute left-3 -top-2 font-semibold flex flex-col items-center p-2 px-2 rounded shadow border border-gray-700 text-gray-700 bg-transparent cursor-pointer">
+                    <i class="material-icons-outlined">check_circle</i>
+                    <span class="text-xs">done</span>
+                </div>
+                <!-- new -->
+                <span class="absolute right-4 -top-2 px-2 bg-yellow-400 text-gray-950 font-semibold shadow-md rounded-lg">New</span>
+
+                <!-- content -->
+                <div class="flex flex-col ml-12 px-2">
+                    <!-- task action -->
+                    <span class="flex items-center gap-1 text-base font-semibold">
+                        <i class="material-icons text-base">task</i>
+                        WorkShop in the office.
+                    </span>
+                    <!-- event -->
+                    <span class="text-sm flex items-center gap-1 text-gray-500">
+                        <i class="material-icons text-base">event</i>
+                        7 jan 2024 | customers
+                    </span>
+                    <div class="type flex justify-between">
+                        <!-- service concerned -->
+                        <span class="text-sm flex items-center gap-1 text-gray-500">
+                            <i class="material-icons text-base">medical_information</i>
+                            Decoration
+                        </span>
+                        <!-- member attributed -->
+                        <span class="text-sm flex items-center gap-1 text-gray-500">
+                            <i class="material-icons text-base">person</i>
+                            To J. Wicks
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

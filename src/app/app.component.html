@@ -1,2 +1,13 @@
-<h1>Hello, app-ng17</h1>
-<router-outlet></router-outlet>
+<div class="aside-menu">
+    <app-side-menu></app-side-menu>
+</div>
+<div class="header shadow-md">
+    <app-header></app-header>
+</div>
+<div class="main p-6 bg-gray-800">
+    <!-- <app-breadcrumbs class=""></app-breadcrumbs> -->
+    <router-outlet></router-outlet>
+</div>
+<div class="right-aside">
+    <app-side-calendar></app-side-calendar>
+</div>

@@ -1,0 +1,34 @@
+.aside-menu {
+    position: fixed;
+    inset: 0;
+    height: 100%;
+    width: 16%;
+    z-index: 10;
+}
+
+.header {
+    position: fixed;
+    inset: 0;
+    top: 0;
+    left: 16%;
+    max-height: 4rem;
+    z-index: 10;
+}
+
+.main {
+    min-height: 100vh;
+    margin-left: 16%;
+    margin-right: 23rem;
+    padding-top: 4rem;
+    z-index: 5;
+}
+
+.right-aside {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 23rem;
+    height: 100%;
+    padding-top: 4rem;
+    z-index: 5;
+}

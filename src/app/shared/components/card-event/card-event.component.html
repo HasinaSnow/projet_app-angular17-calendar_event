@@ -1,0 +1,33 @@
+<div class="card-event relative p-2 rounded-lg bg-gray-950">
+    <!-- date -->
+    <div class="absolute -top-3 font-semibold flex flex-col items-center p-2 px-4 rounded shadow bg-indigo-700">
+        <p class="text-lg font-bold">{{ eventItem.date | date: 'dd' }}</p>
+        <p>{{ eventItem.date | date: 'MM' }}</p>
+    </div>
+    <!-- new -->
+    <span class="absolute right-4 -top-2 px-2 bg-yellow-400 text-gray-950 font-semibold shadow-md rounded-lg">New</span>
+
+    <!-- content -->
+    <div class="flex flex-col ml-14 px-2">
+        <span class="text-lg flex items-center gap-1 font-semibold">
+            <i class="material-icons text-base">badge</i>
+            {{ eventItem.clientEvent.name }}
+        </span>
+        <span class="text-sm flex items-center gap-1 text-gray-500">
+            <i class="material-icons text-base">location_on</i>
+            {{ eventItem.placeEvent.name }}
+        </span>
+        <div class="type flex justify-between">
+            <span class="text-sm flex items-center gap-1 text-gray-500">
+                <i class="material-icons text-base">category</i>
+                {{ eventItem.categEvent.name }}
+            </span>
+            @if (eventItem.statusEvent) {
+                <span class="text-sm flex items-center gap-1 text-gray-500">
+                    <i class="material-icons text-base">recommend</i>
+                    confirmed
+                </span>
+            }
+        </div>
+    </div>
+</div>

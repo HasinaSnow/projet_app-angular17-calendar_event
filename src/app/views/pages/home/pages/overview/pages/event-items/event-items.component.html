@@ -1,0 +1,171 @@
+<div class="event-items w-full grid grid-cols-5">
+    <!-- left -->
+    <div class="news col-span-2">
+        <div class="content pl-2 mb-3">
+            <p class="font-semibold text-xl pb-2">Event</p>
+            <p class="font-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam atque autem accusantium neque, optio maiores molestias, Mollitia. </p>
+        </div>
+        <button class="ml-2 flex text-base font-semibold text-gray-100 cursor-pointer items-center gap-1 hover:bg-indigo-600 bg-indigo-700 p-2 rounded-md shadow">
+            <i class="material-icons text-base">emoji_events</i>
+            <p class="">Add new</p>
+        </button>
+    </div>
+
+    <!-- right -->
+    <div class="list bg-gray-800 rounded-md p-4 col-span-3">
+        <!-- header -->
+        <div class="header flex justify-between items-center gap-1 mb-3">
+            <!-- left -->
+            <div class="left ">
+                <!-- title -->
+                <p class="title flex items-center gap-1 text-lg font-semibold">
+                    <i class="material-icons">list</i>
+                    <span>Events list</span>
+                </p>
+            </div>
+            <!-- right -->
+            <div class="right flex items-center">
+                <!-- order -->
+                <app-dropdown [items]="orderItems"></app-dropdown>
+
+                <!-- filter -->
+                <app-dropdown [items]="filterDateItems"></app-dropdown>
+            </div>
+        </div>
+
+        <!-- content -->
+        <div class="content py-3 flex flex-col gap-4 max-h-72 overflow-y-auto">
+            @for (event of events(); track $index) {
+                <app-card-event [eventItem]="event"></app-card-event>
+            }
+
+            <!-- card event -->
+            <div class="card-event relative p-2 rounded-lg bg-gray-950">
+                <!-- date -->
+                <div class="absolute -top-3 font-semibold flex flex-col items-center p-2 px-4 rounded shadow bg-indigo-700">
+                    <p class="text-lg font-bold">07</p>
+                    <p>Jan</p>
+                </div>
+                <!-- new -->
+                <span class="absolute right-4 -top-2 px-2 bg-yellow-400 text-gray-950 font-semibold shadow-md rounded-lg">New</span>
+
+                <!-- content -->
+                <div class="flex flex-col ml-14 px-2">
+                    <span class="text-lg flex items-center gap-1 font-semibold">
+                        <i class="material-icons text-base">badge</i>
+                        Customer
+                    </span>
+                    <span class="text-sm flex items-center gap-1 text-gray-500">
+                        <i class="material-icons text-base">location_on</i>
+                        location
+                    </span>
+                    <div class="type flex justify-between">
+                        <span class="text-sm flex items-center gap-1 text-gray-500">
+                            <i class="material-icons text-base">category</i>
+                            Mariage
+                        </span>
+                        <span class="text-sm flex items-center gap-1 text-gray-500">
+                            <i class="material-icons text-base">recommend</i>
+                            confirmed
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- card event -->
+            <div class="card-event relative p-2 rounded-lg bg-gray-950">
+                <!-- date -->
+                <div class="absolute -top-3 font-semibold flex flex-col items-center p-2 px-4 rounded shadow bg-indigo-700">
+                    <p class="text-lg font-bold">07</p>
+                    <p>Jan</p>
+                </div>
+
+                <!-- content -->
+                <div class="flex flex-col ml-14 px-2">
+                    <span class="text-lg flex items-center gap-1 font-semibold">
+                        <i class="material-icons text-base">badge</i>
+                        Customer
+                    </span>
+                    <span class="text-sm flex items-center gap-1 text-gray-500">
+                        <i class="material-icons text-base">location_on</i>
+                        location
+                    </span>
+                    <div class="type flex justify-between">
+                        <span class="text-sm flex items-center gap-1 text-gray-500">
+                            <i class="material-icons text-base">category</i>
+                            Mariage
+                        </span>
+                        <span class="text-sm flex items-center gap-1 text-gray-500">
+                            <i class="material-icons text-base">recommend</i>
+                            confirmed
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- card event -->
+            <div class="card-event relative p-2 rounded-lg bg-gray-950">
+                <!-- date -->
+                <div class="absolute -top-3 font-semibold flex flex-col items-center p-2 px-4 rounded shadow bg-indigo-700">
+                    <p class="text-lg font-bold">07</p>
+                    <p>Jan</p>
+                </div>
+                <!-- new -->
+                <span class="absolute right-4 -top-2 px-2 bg-yellow-400 text-gray-950 font-semibold shadow-md rounded-lg">New</span>
+
+                <!-- content -->
+                <div class="flex flex-col ml-14 px-2">
+                    <span class="text-lg flex items-center gap-1 font-semibold">
+                        <i class="material-icons text-base">badge</i>
+                        Customer
+                    </span>
+                    <span class="text-sm flex items-center gap-1 text-gray-500">
+                        <i class="material-icons text-base">location_on</i>
+                        location
+                    </span>
+                    <div class="type flex justify-between">
+                        <span class="text-sm flex items-center gap-1 text-gray-500">
+                            <i class="material-icons text-base">category</i>
+                            Mariage
+                        </span>
+                        <span class="text-sm flex items-center gap-1 text-gray-500">
+                            <i class="material-icons text-base">recommend</i>
+                            confirmed
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- card event -->
+            <div class="card-event relative p-2 rounded-lg bg-gray-950">
+                <!-- date -->
+                <div class="absolute -top-3 font-semibold flex flex-col items-center p-2 px-4 rounded shadow bg-indigo-700">
+                    <p class="text-lg font-bold">07</p>
+                    <p>Jan</p>
+                </div>
+
+                <!-- content -->
+                <div class="flex flex-col ml-14 px-2">
+                    <span class="text-lg flex items-center gap-1 font-semibold">
+                        <i class="material-icons text-base">badge</i>
+                        Customer
+                    </span>
+                    <span class="text-sm flex items-center gap-1 text-gray-500">
+                        <i class="material-icons text-base">location_on</i>
+                        location
+                    </span>
+                    <div class="type flex justify-between">
+                        <span class="text-sm flex items-center gap-1 text-gray-500">
+                            <i class="material-icons text-base">category</i>
+                            Mariage
+                        </span>
+                        <span class="text-sm flex items-center gap-1 text-gray-500">
+                            <i class="material-icons text-base">recommend</i>
+                            confirmed
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="flex px-4 justify-between items-center w-full h-full overflow-hidden text-sm text-gray-400 bg-gray-950">
+    <!-- left -->
+    <div class="flex gap-2 font-semibold">
+        @for (item of navItems(); track $index) {
+            <div [routerLink]="[item.url]" [routerLinkActive]="'text-gray-200 bg-gray-700'" class="flex items-center hover:bg-gray-900 hover:text-gray-200  shadow-sm rounded p-1 px-2 pl-0 cursor-pointer">
+                <i class="material-icons-outlined p-1">{{ item.icon }}</i>
+                <span>{{ item.label }}</span>
+            </div>
+        }
+    </div>
+    <!-- right -->
+    <div class="flex gap-4 items-center">
+        <div class="relative flex justify-center items-center p-1 bg-gray-600 rounded-full shadow">
+            <i class="material-icons-outlined p-1 bg-gray-950 rounded-full shadow">notifications</i>
+            <span class="absolute top-0 -right-2 text-center font-semibold rounded-full text-xs px-1 text-black shadow bg-yellow-500">33</span>
+        </div>
+        <div class="cursor-pointer flex items-center bg-gray-700 text-gray-300 hover:text-gray-200 hover:bg-gray-500 rounded-full shadow p-1 pr-3 gap-1">
+                <i class="material-icons-outlined p-1 bg-gray-950 rounded-full shadow">person</i> 
+            <span class="font-bold">H. Niaina</span>
+        </div>
+    </div>
+</div>

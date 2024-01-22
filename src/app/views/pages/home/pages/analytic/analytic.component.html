@@ -1,1 +1,42 @@
-<p>analytic works!</p>
+<div class="border-1 text-gray-300 text-sm mt-6">
+    <!-- card resume -->
+    <div class="card h-fit rounded-md w-full bg-gray-950 shadow-sm py-6">
+      <!-- head -->
+      <div class="">
+        <!-- title -->
+        <div class="px-3">
+          <span class="text-lg font-semibold">Analytics :</span>
+        </div>
+
+        <!-- menu items -->
+        <div class="flex flex-nowrap justify-between items-center">
+          <!-- left -->
+          <div class="flex flex-nowrap gap-3 p-3 overflow-x-auto">
+            @for (item of navItems(); track $index) {
+              <div (click)="onActive(item)" class="{{ item.active ? 'text-gray-200 bg-gray-600': 'bg-gray-800' }} hover:text-gray-200 hover:bg-gray-700 cursor-pointer relative p-1 px-2 flex gap-1 items-center rounded-md shadow ">
+                  @if (item.new) {
+                      <span class="absolute -right-1 -top-1 w-3 h-3 rounded-full bg-indigo-700 shadow-sm shadow-indigo-700"></span>
+                  }
+                  <i class="material-icons text-base">{{ item.icon }}</i>
+                  <span class="font-semibold">{{ item.label }}</span>
+              </div>
+            }
+          </div>
+          <div class="flex flex-nowrap gap-3 p-3">
+            <app-dropdown [items]="filterItems" [iconDropdown]="'filter_alt'" (valueEmitted)="onFilterValue($event)" [classStyle]="'border-b rounded-none'"></app-dropdown>
+          </div>
+        </div>
+
+      <!-- content -->
+      <div class="p-3">
+        @switch (itemActive()) {
+          @case (navItems()[0]) {
+            <app-report-item></app-report-item>
+          }
+          @case (navItems()[1]) {
+            <app-asset-item></app-asset-item>
+          }
+        }
+      </div>
+    </div>
+</div>

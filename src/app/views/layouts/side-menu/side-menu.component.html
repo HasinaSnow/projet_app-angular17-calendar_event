@@ -1,24 +1,120 @@
-   <!-- Component Start -->
-	<div class="flex flex-col items-center w-full h-full overflow-hidden text-gray-400 bg-gray-950">
-		<a class="flex items-center w-full px-3 mt-3" href="#">
-			<svg class="w-8 h-8 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-				<path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z" />
-			</svg>
-			<span class="ml-2 text-sm font-bold">Calendar Event</span>
-		</a>
-		<div class="w-full px-2">
-			<div class="flex flex-col items-center w-full mt-3 border-t border-gray-700">
-				@for (item of navItems(); track $index) {
-					<div [routerLink]="item.url" [routerLinkActive]="'text-gray-200 bg-gray-700'" class="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-900 hover:text-gray-300">
-						<i class="material-icons-outlined w-6 h-6">{{ item.icon }}</i> 
-						<span class="ml-2 text-sm font-medium">{{ item.label }}</span>
-					</div>
-				}
-			</div>
-		</div>
-		<div (click)="onLogout()" class="flex items-center justify-center w-full h-16 mt-auto hover:bg-gray-800 bg-gray-900 hover:text-gray-300" href="#">
-			<i class="material-icons-outlined">logout</i>
-			<span class="ml-2 text-sm font-medium">Logout</span>
-		</div>
-	</div>
-	<!-- Component End  -->
+<!-- sidebar menu -->
+<button data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar" aria-controls="sidebar-multi-level-sidebar" type="button" class="fixed z-20 inline-flex items-center p-2 border left-4 top-4 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+    <span class="sr-only">Open sidebar</span>
+    <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+    <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+    </svg>
+</button>
+
+ <aside id="sidebar-multi-level-sidebar" class="fixed top-0 left-0 z-40 sm:w-20 md:w-60 lg:w-64 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+   <div class="flex flex-col justify-between h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+   <div>
+      <!-- logo -->
+      <a  class="flex items-center gap-3 ps-2.5 mb-5">
+         <!-- <img src="" class="h-6 me-3 sm:h-7" alt="Flowbite Logo" /> -->
+         <i class="material-icons p-0 text-3xl">polymer</i>
+         <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white sm:hidden md:block">Calendar Event</span>
+      </a>
+      <!-- nav items -->
+      <ul class="space-y-2 font-medium">
+         <!-- dashboard -->
+         <li>
+            <a  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <i class="material-icons tex-2xl text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">dashboard</i>
+               <span class="ms-3 sm:hidden md:block">Dashboard</span>
+            </a>
+         </li>
+         <!-- manage -->
+         <li class="">
+            <button type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                  <i class="material-icons tex-2xl text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">donut_small</i>
+                  <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap sm:hidden md:block">Manage ...</span>
+                  <svg class="w-3 h-3 sm:hidden lg:block" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                  </svg>
+            </button>
+            <ul id="dropdown-example" class="hidden py-2 space-y-2 absolute md:static">
+                  <li>
+                     <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                        <i class="material-icons mr-2">calendar_month</i>
+                        Events
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                        <i class="material-icons mr-2">book</i>
+                        Journal
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                        <i class="material-icons mr-2">task</i>
+                        Tasks
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                        <i class="material-icons mr-2">groups</i>
+                        Members
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                        <i class="material-icons mr-2">construction</i>
+                        Equipements
+                     </a>
+                  </li>
+            </ul>
+         </li>
+         <!-- my agenda -->
+         <li>
+            <a  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <i class="material-icons text-2xl text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">event_available</i>
+               <span class="flex-1 ms-3 whitespace-nowrap sm:hidden md:block">My Agenda</span>
+               <span class="items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 hidden md:inline-flex">3</span>
+            </a>
+         </li>
+         <!-- my profile -->
+         <li>
+            <a  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <i class="material-icons text-2xl text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">person</i>
+               <span class="flex-1 ms-3 whitespace-nowrap sm:hidden md:block">My profile</span>
+               <span class="items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300 hidden md:inline-flex">Pro</span>
+            </a>
+         </li>
+         <!-- settings -->
+         <li>
+            <a  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <i class="material-icons tex-2xl text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">settings</i>
+               <span class="flex-1 ms-3 whitespace-nowrap sm:hidden md:block">Settings</span>
+               <span class="items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 hidden md:inline-flex">3</span>
+            </a>
+         </li>
+         <!-- about -->
+         <li>
+            <a  class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <i class="material-icons tex-2xl text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">info</i>
+               <span class="flex-1 ms-3 whitespace-nowrap sm:hidden md:block">About</span>
+               <span class="items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 hidden md:inline-flex">3</span>
+            </a>
+         </li>
+      </ul>
+   </div>
+   <!-- CTA button -->
+   <div id="dropdown-cta" class="p-4 mt-6 rounded-lg bg-blue-50 dark:bg-blue-900 sm:hidden md:block" role="alert">
+      <div class="flex items-center mb-3">
+         <span class="bg-orange-100 text-orange-800 text-sm font-semibold me-2 px-2.5 py-0.5 rounded dark:bg-orange-200 dark:text-orange-900">Beta</span>
+         <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-blue-50 inline-flex justify-center items-center w-6 h-6 text-blue-900 rounded-lg focus:ring-2 focus:ring-blue-400 p-1 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-400 dark:hover:bg-blue-800" data-dismiss-target="#dropdown-cta" aria-label="Close">
+            <span class="sr-only">Close</span>
+            <svg class="w-2.5 h-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+            </svg>
+         </button>
+      </div>
+      <p class="mb-3 text-sm text-blue-800 dark:text-blue-400">
+         Preview the new Flowbite dashboard navigation! You can turn the new navigation off for a limited time in your profile.
+      </p>
+      <a class="text-sm text-blue-800 underline font-medium hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300" href="#">Turn new navigation off</a>
+   </div>
+   </div>
+ </aside>

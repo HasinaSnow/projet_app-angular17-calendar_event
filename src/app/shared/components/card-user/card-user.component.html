@@ -1,4 +1,4 @@
-<div class="card-event relative p-2 rounded-lg bg-gray-950">
+<div class="card-event relative p-2 rounded-lg bg-gray-950 shadow-md">
     <!-- icon -->
     <div class="absolute left-3 -top-2 font-semibold flex flex-col items-center p-2 px-2 rounded shadow bg-indigo-700 cursor-pointer">
         <i class="material-icons-outlined">person</i>
@@ -15,24 +15,23 @@
             {{ userItem.name }}
         </span>
         <!-- event -->
-        <span class="text-sm flex items-center gap-1 text-gray-500">
+        <span class="text-xs flex items-center gap-1 text-gray-500 cursor-pointer hover:underline">
             <i class="material-icons text-base">design_services</i>
             @for (service of userItem.servicesUser; track $index) {
-                {{ service.name }} |
+                | {{ service.name }}
             }
         </span>
         <div class="type flex justify-between">
             <!-- service concerned -->
-            <span class="text-sm flex items-center gap-1 text-gray-500">
+            <span class="text-xs flex items-center gap-1 text-gray-500 cursor-pointer hover:underline">
                 <i class="material-icons text-base">grade</i>
                 @for (rule of userItem.rulesUser; track $index) {
-                    {{ rule.name }} |
+                    | {{ rule.name }}
                 }
             </span>
             <!-- member attributed -->
             @if (userItem.online) {
-                <span class="text-sm flex items-center gap-1 text-gray-500">
-                    <i class="material-icons text-base">person</i>
+                <span class="text-xs text-gray-500">
                     online
                 </span>
             }

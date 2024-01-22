@@ -1,0 +1,38 @@
+<div class="event-items w-full flex flex-col">
+    <!-- section -->
+    <div class="bg-gray-800 col-span-2 p-4 rounded-md">
+        <!-- header -->
+        <p class="font-semibold text-xl mb-6">Global Assets :</p>
+
+        <!-- cards assets -->
+        <div class="grid grid-cols-3 gap-3">
+            @for (item of cardItems(); track $index) {
+                <app-card-analytic class="col-span-1" [item]="item"></app-card-analytic>
+            }
+        </div>
+
+    </div>
+
+    <!-- section -->
+    <div class="list rounded-md p-4 col-span-3">
+        <!-- header -->
+        <div class="header flex justify-between items-center gap-1 mb-3">
+            <!-- left -->
+            <div class="left px-2">
+                <!-- title -->
+                <p class="title flex items-center gap-1 text-lg font-semibold">
+                    <i class="material-icons">query_stats</i>
+                    <span>Graphic reports :</span>
+                </p>
+            </div>
+            <!-- right -->
+            <div class="right flex items-center gap-3">
+            </div>
+        </div>
+        <!-- content -->
+        <div class="content my-3 flex flex-col gap-4 max-h-72">
+            <app-chart-line [values]="assetChartValues()"></app-chart-line>
+        </div>
+    </div>
+
+</div>

@@ -17,18 +17,18 @@
         <!-- event -->
         <span class="text-sm flex items-center gap-1 text-gray-500">
             <i class="material-icons text-base">event</i>
-            {{ taskItem.eventTask.date | date: 'dd, MM, YYYY' }} | {{ taskItem.clientEventTask.name }}
+            {{ taskItem.eventTask.date | date: 'dd, MM, YYYY' }} | {{ taskItem.eventTask.place.name }}
         </span>
         <div class="type flex justify-between">
             <!-- service concerned -->
             <span class="text-sm flex items-center gap-1 text-gray-500">
                 <i class="material-icons text-base">medical_information</i>
-                {{ taskItem.serviceEventTask.name }}
+                {{ taskItem.serviceTask.name }}
             </span>
             <!-- member attributed -->
             <span class="text-sm flex items-center gap-1 text-gray-500">
                 <i class="material-icons text-base">person</i>
-                {{ taskItem.userTask.name }}
+                {{ taskItem.userAttributed.name }}
             </span>
         </div>
     </div>

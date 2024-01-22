@@ -20,4 +20,12 @@ export class EventItemsComponent {
   orderItems: IItem[] = inject(OrderService).orderItems
 
   events: WritableSignal<IEvent[]> = this.eventService.eventItems
+
+  onOrderValue(item: IItem) {
+    this.eventService.changeOrder(item)
+  }
+
+  onFilterValue(item: IItem) {
+    this.eventService.changeFilter(item)
+  }
 }

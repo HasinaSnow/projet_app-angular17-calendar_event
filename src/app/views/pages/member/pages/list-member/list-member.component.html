@@ -1,0 +1,65 @@
+<div class="border-1 flex flex-col gap-4 text-gray-300 text-sm p-3 mt-6">
+    <!-- card title -->
+    <div class="rounded-md p-4 bg-gray-950 shadow">
+        <!-- header -->
+        <div class="flex items-center gap-3 text-lg font-semibold">
+            <i class="material-icons-outlined">groups</i>
+            <span>Member list ...</span>
+        </div>
+        <!-- content -->
+        <div class="flex items-center justify-between mt-2 gap-2">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis ipsam, iusto magni ad delectus voluptates nesciunt eligendi quas rem iste ipsa asperiores in vitae inventore, voluptatibus illo corporis repudiandae vero.</p>
+            <div class="flex flex-nowrap w-fit p-2 px-3 items-center gap-2 text-base font-semibold rounded-md bg-indigo-700 cursor-pointer transition transform hover:-translate-y-0.5 hover:bg-indigo-800 hover:text-gray-200">
+                <i class="material-icons">person_add</i>
+                <span class="font-semibold">Add</span>
+            </div>
+        </div>
+
+    </div>
+    <!-- card filters -->
+    <div class="relative flex justify-end items-center gap-3 rounded-md p-3 bg-gray-950 shadow">
+        <!-- title -->
+        <span class="absolute -top-2 left-3 px-3 text-base text-gray-200 font-semibold bg-gray-700 rounded-md">Filters</span>
+        <!-- search -->
+        <div class='max-w-md border-b border-gray-500'>
+            <div class="relative flex items-center w-full py-2 text-gray-200 focus-within:bg-gray-900 overflow-hidden">
+                <div class="grid place-items-center w-12">
+                    <i class="material-icons">search</i>
+                </div>
+                <input
+                class="peer h-full w-full outline-none font-semibold bg-transparent pr-2"
+                type="text"
+                id="search"
+                placeholder="Search member.." /> 
+            </div>
+        </div>
+        <!-- order -->
+        <app-dropdown [classStyle]="'border-b border-gray-500 rounded-none'" [iconDropdown]="'sort'" [items]="orderMemberItems"></app-dropdown>
+        <!-- filter -->
+        <app-dropdown [classStyle]="'border-b border-gray-500 rounded-none'" [iconDropdown]="'filter_alt'" [items]="filterMemberItems"></app-dropdown>
+    </div>
+
+    <!-- member list -->
+    <div class="grid grid-cols-3">
+        @for (item of members(); track $index) {
+            <div class="col-span-1 p-1 py-2 transition transform hover:-translate-y-0.5 cursor-pointer">
+                <app-card-user [userItem]="item"></app-card-user>
+            </div>
+            <div class="col-span-1 p-1 py-2 transition transform hover:-translate-y-0.5 cursor-pointer">
+                <app-card-user [userItem]="item"></app-card-user>
+            </div>
+            <div class="col-span-1 p-1 py-2 transition transform hover:-translate-y-0.5 cursor-pointer">
+                <app-card-user [userItem]="item"></app-card-user>
+            </div>
+            <div class="col-span-1 p-1 py-2 transition transform hover:-translate-y-0.5 cursor-pointer">
+                <app-card-user [userItem]="item"></app-card-user>
+            </div>
+            <div class="col-span-1 p-1 py-2 transition transform hover:-translate-y-0.5 cursor-pointer">
+                <app-card-user [userItem]="item"></app-card-user>
+            </div>
+            <div class="col-span-1 p-1 py-2 transition transform hover:-translate-y-0.5 cursor-pointer">
+                <app-card-user [userItem]="item"></app-card-user>
+            </div>
+        }
+    </div>
+</div>

@@ -24,12 +24,12 @@
                 </p>
             </div>
             <!-- right -->
-            <div class="right flex items-center">
+            <div class="right flex gap-2 items-center">
                 <!-- order -->
-                <app-dropdown [items]="orderItems"></app-dropdown>
+                <app-dropdown [items]="orderItems" [iconDropdown]="'sort'" (valueEmitted)="onOrderValue($event)"></app-dropdown>
 
                 <!-- filter -->
-                <app-dropdown [items]="filterDateItems"></app-dropdown>
+                <app-dropdown [items]="filterDateItems" [iconDropdown]="'filter_alt'" (valueEmitted)="onFilterValue($event)"></app-dropdown>
             </div>
         </div>
 

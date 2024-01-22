@@ -1,22 +1,349 @@
-<div class="flex px-4 justify-between items-center w-full h-full overflow-hidden text-sm text-gray-400 bg-gray-950">
-    <!-- left -->
-    <div class="flex gap-2 font-semibold">
-        @for (item of navItems(); track $index) {
-            <div [routerLink]="[item.url]" [routerLinkActive]="'text-gray-200 bg-gray-700'" class="flex items-center hover:bg-gray-900 hover:text-gray-200  shadow-sm rounded p-1 px-2 pl-0 cursor-pointer">
-                <i class="material-icons-outlined p-1">{{ item.icon }}</i>
-                <span>{{ item.label }}</span>
-            </div>
-        }
+<!-- navbar header -->
+<nav
+  class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600"
+>
+  <div
+    class="max-w-screen-xl flex gap-4 flex-nowrap items-center justify-end mx-auto p-4"
+  >
+    <!-- nav menu -->
+    <div class="hidden sm:flex items-center justify-end border">
+      <!-- add btn -->
+      <div>
+        <button
+          id="dropdownNavbarLink"
+          data-dropdown-toggle="dropdownNavbar"
+          class="flex items-center justify-between w-full py-2 px-2 rounded bg-blue-500 md:shadow text-gray-100 dark:text-blue-500"
+        >
+          <i class="material-icons">add</i>
+          Add new
+          <svg
+            class="w-2.5 h-2.5 ms-2.5"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 10 6"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m1 1 4 4 4-4"
+            />
+          </svg>
+        </button>
+        <!-- Dropdown menu -->
+        <div
+          id="dropdownNavbar"
+          class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-40 dark:bg-gray-700 dark:divide-gray-600"
+        >
+          <ul
+            class="py-2 text-sm text-gray-700 dark:text-gray-400"
+            aria-labelledby="dropdownLargeButton"
+          >
+            @for (item of addBtnItems; track $index) {
+            <li>
+              <a
+                (click)="(item.action)"
+                class="flex gap-2 items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
+              >
+                <i class="material-icons">{{ item.icon }}</i>
+                {{ item.label }}
+              </a>
+            </li>
+            }
+          </ul>
+        </div>
+      </div>
     </div>
     <!-- right -->
-    <div class="flex gap-4 items-center">
-        <div class="relative flex justify-center items-center p-1 bg-gray-600 rounded-full shadow">
-            <i class="material-icons-outlined p-1 bg-gray-950 rounded-full shadow">notifications</i>
-            <span class="absolute top-0 -right-2 text-center font-semibold rounded-full text-xs px-1 text-black shadow bg-yellow-500">33</span>
+    <div
+      class="flex gap-4 md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse"
+    >
+      <!-- tasks dropdown -->
+      <div>
+        <button
+          id="dropdownTasksButton"
+          data-dropdown-toggle="dropdownTasks"
+          class="relative inline-flex items-center text-sm font-medium text-center focus:outline-none dark:hover:text-white dark:text-gray-400"
+          type="button"
+        >
+          <i class="material-icons p-1 rounded-full">task</i>
+          <div
+            class="absolute block w-4 h-4 bg-red-500 border-2 border-white rounded-full -top-0.5 right-0 dark:border-gray-900"
+          ></div>
+        </button>
+        <!-- Dropdown menu -->
+        <div
+          id="dropdownTasks"
+          class="z-20 hidden w-full max-w-sm max-h-96 overflow-y-auto bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-800 dark:divide-gray-700"
+          aria-labelledby="dropdownTasksButton"
+        >
+          <div
+            class="block px-4 py-2 font-medium text-center text-gray-700 rounded-t-lg bg-gray-50 dark:bg-gray-800 dark:text-white"
+          >
+            Your incomplete Tasks
+          </div>
+          <div class="divide-y divide-gray-100 dark:divide-gray-700">
+            @for (item of tasksItems(); track $index) {
+            <a
+              (click)="goToTaskView(item.id)"
+              class="flex flex-nowrap px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
+              <div
+                class="w-10 border rounded flex flex-col justify-center items-center"
+              >
+                <i class="material-icons text-xl text-gray-900">task</i>
+                @if (item.isNew) {
+                <span
+                  class="px-1 bg-yellow-400 font-semibold text-gray-900 text-sx"
+                  >new</span
+                >
+                }
+              </div>
+              <div class="ps-3 flex-grow-0">
+                <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">
+                  <span class="font-semibold text-gray-900 dark:text-white">
+                    "{{ item.action }}" |
+                  </span>
+                  @if (item.delais) { delais:
+                  {{ item.delais | date : "dd, MMM" }}
+                  }
+                </div>
+                <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">
+                  Event:
+                  <span
+                    (click)="goToEventView(item.eventTask.id)"
+                    class="font-semibold text-gray-900 dark:text-white hover:underline"
+                    >{{ item.eventTask.date | date : "dd, MMM YYYY" }}</span
+                  >
+                  -
+                  <span
+                    (click)="goToClientView(item.eventTask.place.id)"
+                    class="font-semibold text-gray-900 dark:text-white hover:underline"
+                    >{{ item.eventTask.place.name }}</span
+                  >
+                </div>
+                <div class="text-xs text-blue-600 dark:text-blue-500">
+                  {{ item.createdAt | date : "dd, MMM YYYY" }}
+                </div>
+              </div>
+            </a>
+            }
+          </div>
+          <a
+            class="block py-2 text-sm font-medium text-center text-gray-900 rounded-b-lg bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white"
+          >
+            <div class="inline-flex items-center">
+              <svg
+                class="w-4 h-4 me-2 text-gray-500 dark:text-gray-400"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 20 14"
+              >
+                <path
+                  d="M10 0C4.612 0 0 5.336 0 7c0 1.742 3.546 7 10 7 6.454 0 10-5.258 10-7 0-1.664-4.612-7-10-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"
+                />
+              </svg>
+              View all
+            </div>
+          </a>
         </div>
-        <div class="cursor-pointer flex items-center bg-gray-700 text-gray-300 hover:text-gray-200 hover:bg-gray-500 rounded-full shadow p-1 pr-3 gap-1">
-                <i class="material-icons-outlined p-1 bg-gray-950 rounded-full shadow">person</i> 
-            <span class="font-bold">H. Niaina</span>
+      </div>
+
+      <!-- notifs dropdown -->
+      <div>
+        <button
+          id="dropdownNotificationButton"
+          data-dropdown-toggle="dropdownNotification"
+          class="relative inline-flex items-center text-sm font-medium text-center focus:outline-none dark:hover:text-white dark:text-gray-400"
+          type="button"
+        >
+          <i class="material-icons p-1 rounded-full">notifications</i>
+          <div
+            class="absolute block w-4 h-4 bg-red-500 border-2 border-white rounded-full -top-0.5 right-0 dark:border-gray-900"
+          ></div>
+        </button>
+        <!-- Dropdown menu -->
+        <div
+          id="dropdownNotification"
+          class="z-20 hidden w-full max-w-sm max-h-96 overflow-y-auto bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-800 dark:divide-gray-700"
+          aria-labelledby="dropdownNotificationButton"
+        >
+          <div
+            class="block px-4 py-2 font-medium text-center text-gray-700 rounded-t-lg bg-gray-50 dark:bg-gray-800 dark:text-white"
+          >
+            Your Notifications
+          </div>
+          <div class="divide-y divide-gray-100 dark:divide-gray-700">
+            @for (item of notifsItems(); track $index) {
+            <a class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
+              <div class="flex-shrink-0">
+                <img
+                  class="rounded-full w-11 h-11"
+                  src="{{ item.user.imageRef }}"
+                  alt="Jese image"
+                />
+                <div
+                  class="absolute flex items-center justify-center w-6 h-6 ms-6 -mt-5 bg-blue-600 border border-white rounded-full dark:border-gray-800"
+                >
+                  <i class="material-icons text-xs text-white">{{
+                    item.model.icon
+                  }}</i>
+                </div>
+              </div>
+              <div class="w-full ps-3">
+                <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">
+                  {{ item.context }}
+                  <span
+                    (click)="gotoUserView(item.user.id)"
+                    class="font-semibold text-gray-900 dark:text-white hover:underline"
+                    >{{ item.user.name }}</span
+                  >: "{{ item.infos }}"
+                </div>
+                <div class="text-xs text-blue-600 dark:text-blue-500">
+                  {{ item.createdAt | date : "dd, MMM YYYY" }}
+                </div>
+              </div>
+            </a>
+            }
+          </div>
+          <a
+            class="block py-2 text-sm font-medium text-center text-gray-900 rounded-b-lg bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white"
+          >
+            <div class="inline-flex items-center">
+              <svg
+                class="w-4 h-4 me-2 text-gray-500 dark:text-gray-400"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 20 14"
+              >
+                <path
+                  d="M10 0C4.612 0 0 5.336 0 7c0 1.742 3.546 7 10 7 6.454 0 10-5.258 10-7 0-1.664-4.612-7-10-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"
+                />
+              </svg>
+              View all
+            </div>
+          </a>
         </div>
+      </div>
+
+      <!-- profile dropdown -->
+      <div>
+        <button
+          id="dropdownAvatarNameButton"
+          data-dropdown-toggle="dropdownAvatarName"
+          class="flex items-center text-sm pe-1 font-medium text-gray-900 rounded-full md:me-0 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-white"
+          type="button"
+        >
+          <!-- <img class="w-8 h-8 me-2 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="user photo"> -->
+          <i class="material-icons p-1 rounded-full">person</i>
+          <span class="text-gray-900 hidden sm:block">{{
+            myProfile().name
+          }}</span>
+          <svg
+            class="w-2.5 h-2.5 sm:ms-3"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 10 6"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m1 1 4 4 4-4"
+            />
+          </svg>
+        </button>
+        <!-- Dropdown -->
+        <div
+          id="dropdownAvatarName"
+          class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
+        >
+          <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+            <div class="font-medium">
+              @for (rule of myProfile().rules; track $index) { |
+              <span (click)="goToRuleView(rule.id)" class="hover:underline">{{
+                rule.name
+              }}</span>
+              | }
+            </div>
+            <div class="truncate">{{ myProfile().email }}</div>
+          </div>
+          <!-- items shortcuts -->
+          <ul
+            class="py-2 text-sm text-gray-700 dark:text-gray-200"
+            aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton"
+          >
+            <!-- link profile page -->
+            <li>
+               <a
+                  (click)="goToMyProfilePage()"
+                  class="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
+               >
+                  <i class="material-icons">person</i>
+                  My profile
+               </a>
+            </li>
+            <!-- link settings page -->
+            <li>
+               <a
+                  (click)="goToSettingsPage()"
+                  class="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
+               >
+                  <i class="material-icons">settings</i>
+                  Settings
+               </a>
+            </li>
+          </ul>
+          <!-- link logout -->
+          <div class="py-2">
+            <!-- check to dark theme -->
+            <div
+              class="flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+            >
+              <input
+                id="checkbox-item-2"
+                type="checkbox"
+                [checked]="isDarkTheme()"
+                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+              />
+              <label
+                for="checkbox-item-2"
+                class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >Dark Theme</label
+              >
+            </div>
+            <!-- check to online -->
+            <div
+              class="flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+            >
+              <input
+                id="checkbox-item-1"
+                type="checkbox"
+                [checked]="myProfile().isOnline"
+                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+              />
+              <label
+                for="checkbox-item-1"
+                class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >Turn to online</label
+              >
+            </div>
+            <a
+              (click)="onSignOut()"
+              class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer"
+            >
+               <i class="material-icons">logout</i>
+               Sign out
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+</nav>

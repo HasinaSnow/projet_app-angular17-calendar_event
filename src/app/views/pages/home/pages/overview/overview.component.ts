@@ -1,4 +1,4 @@
-import { Component, OnInit, Signal, WritableSignal, computed, signal } from '@angular/core';
+import { Component, OnInit, Signal, WritableSignal, computed, inject, signal } from '@angular/core';
 import { INavItem } from '../../../../../shared/interfaces/nav-item.interface';
 import { CommonModule } from '@angular/common';
 import { EventItemsComponent } from './pages/event-items/event-items.component';
@@ -6,6 +6,7 @@ import { TaskItemsComponent } from './pages/task-items/task-items.component';
 import { CategItemsComponent } from './pages/categ-items/categ-items.component';
 import { PlaceItemsComponent } from './pages/place-items/place-items.component';
 import { UserItemsComponent } from './pages/user-items/user-items.component';
+import { ItemService } from '../../../../../shared/services/item.service';
 
 @Component({
   selector: 'app-overview',
@@ -22,6 +23,7 @@ import { UserItemsComponent } from './pages/user-items/user-items.component';
   styleUrl: './overview.component.scss'
 })
 export class OverviewComponent implements OnInit {
+  private itemService = inject(ItemService)
 
   itemActive: Signal<INavItem>
   navItems: WritableSignal<INavItem[]> = signal([
@@ -58,16 +60,10 @@ export class OverviewComponent implements OnInit {
   ])
 
   ngOnInit(): void {
-    this.itemActive = computed(() => {
-      return this.navItems().filter(item => item.active === true)[0]
-    })
+    this.itemActive = this.itemService.computeItemActive(this.navItems)
   }
 
   onActive(item: INavItem) {
-    this.navItems.update(values => values.map(value => {
-        if(value == item) value.active = true
-        else value.active = false
-        return value
-    }))
+    this.itemService.activeItem(this.navItems, item)
   }
 }

@@ -1,28 +1,18 @@
-export interface Itask {
+export interface ItaskItem {
     id: number,
     action: string,
+    delais?: Date,
+    serviceTask: { id: number, name: string },
     eventTask: IEventTask,
-    clientEventTask: IClientEventTask,
-    serviceEventTask: IServiceEventTask,
-    userTask: IUserTask
+    userAttributed: {id: number, name: string},
+    createdAt: Date,
+    isNew?: boolean
 }
 
-interface IUserTask {
-    id: number,
-    name: string
-}
 
 interface IEventTask {
     id: number,
-    date: Date
+    date: Date,
+    place: { id: number, name: string }
 }
 
-interface IClientEventTask {
-    id: number,
-    name: string
-}
-
-interface IServiceEventTask {
-    id: number,
-    name: string
-}

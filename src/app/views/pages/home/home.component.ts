@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
         url: '/home/overview'
       },
       {
-        label: 'Analytics',
+        label: 'Statistics',
         icon: 'analytics',
         url: '/home/analytics'
       },

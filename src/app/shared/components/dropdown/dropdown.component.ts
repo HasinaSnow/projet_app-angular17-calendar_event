@@ -29,6 +29,7 @@ export class DropdownComponent implements OnInit {
     { label: 'item 4', id: 4 },
   ]
   options: IItem[]
+  @Input() classStyle: string
 
   ngOnInit(): void {
     this.valueSelected.set(this.items.find(item => item.id == this.defaultValue) || {label: 'item 1', id: 1}) 

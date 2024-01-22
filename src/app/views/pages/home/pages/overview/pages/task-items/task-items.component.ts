@@ -4,7 +4,7 @@ import { IItem } from '../../../../../../../shared/interfaces/item.interface';
 import { FilterService } from '../../../../../../../shared/services/filter.service';
 import { OrderService } from '../../../../../../../shared/services/order.service';
 import { CardTaskComponent } from '../../../../../../../shared/components/card-task/card-task.component';
-import { Itask } from '../../../../../../../shared/interfaces/task.interface';
+import { ItaskItem } from '../../../../../../../shared/interfaces/task.interface';
 import { TaskService } from '../../../../../../../shared/services/task.service';
 
 @Component({
@@ -20,7 +20,7 @@ export class TaskItemsComponent {
   filterDateItems: IItem[] = inject(FilterService).filterDateItems
   orderItems: IItem[] = inject(OrderService).orderItems
 
-  tasks: WritableSignal<Itask[]> = this.taskService.taskItems
+  tasks: WritableSignal<ItaskItem[]> = this.taskService.taskItems
 
   onOrderValue(item: IItem) {
     this.taskService.changeOrder(item)

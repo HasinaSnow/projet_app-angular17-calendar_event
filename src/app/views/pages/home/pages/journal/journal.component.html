@@ -1,1 +1,71 @@
-<p>journal works!</p>
+<div class="border-1 text-gray-300 text-sm mt-6 py-3 rounded-md shadow-sm bg-gray-950">
+    <!-- card resume -->
+    <div class="card h-fit w-full">
+      <!-- head -->
+        <!-- banner -->
+        <div class="p-3">
+            <!-- helping -->
+            <div class="content pl-2 mb-3">
+                <p class="font-semibold text-xl pb-2">Accounting journal</p>
+                <p class="font-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam atque autem accusantium neque, optio maiores molestias, Mollitia. </p>
+            </div>
+
+            <!-- add button -->
+            <button class="ml-2 flex text-base font-semibold text-gray-100 cursor-pointer items-center gap-1 hover:bg-indigo-600 bg-indigo-700 p-2 rounded-md shadow">
+                <i class="material-icons text-base">emoji_events</i>
+                <p class="">Add new</p>
+            </button>
+        </div>
+    </div>
+
+    <!-- content -->
+    <div class="m-4 p-3 py-6 rounded-md bg-gray-800 grid grid-cols-5">
+        <!-- filters -->
+        <div class="relative p-3 py-5 border rounded-md border-gray-500 col-span-2">
+            <!-- title -->
+            <div class="absolute -top-3 px-2 flex gap-1 items-center border rounded border-gray-500 bg-gray-950">
+                <i class="material-icons-outlined text-base">filter_alt</i>
+                <p>Filters</p>
+            </div>
+
+            <!-- filter items -->
+            <div class="flex flex-col items-end justify-end gap-2">
+                <!-- action filter -->
+                <div class="flex gap-1 items-end flex-col">
+                    <span class="px-2">Action :</span>
+                    <app-dropdown [classStyle]="'w-fit'" [items]="actionFilterItems" [iconDropdown]="'request_quote'" (valueEmitted)="onFilterValue($event)"></app-dropdown>
+                </div>
+                <!-- flow filter -->
+                <div class="flex gap-1 w-full items-end flex-col">
+                    <span class="px-2">Flow :</span>
+                    <app-dropdown [classStyle]="''" [items]="flowFilterItems" [iconDropdown]="'money'" (valueEmitted)="onFilterValue($event)"></app-dropdown>
+                </div>
+                <!-- created at filter -->
+                <div class="flex gap-1 items-end flex-col">
+                    <span class="px-2">Created at :</span>
+                    <app-dropdown [classStyle]="'w-fit'" [items]="dateFilterItems" [iconDropdown]="'date_range'" (valueEmitted)="onFilterValue($event)"></app-dropdown>
+                </div>
+                <!-- event filter -->
+                <div class="flex gap-1 items-end flex-col">
+                    <span class="px-2">Action :</span>
+                    <input type="calendar" placeholder="event">
+                </div>
+            </div>
+        </div>
+
+        <!-- journal items -->
+        <div class="col-span-3 relative ml-5 p-3 py-5 border rounded-md border-gray-500">
+            <!-- title -->
+            <div class="absolute -top-3 px-2 flex gap-1 items-center border rounded border-gray-500 bg-gray-950">
+                <i class="material-icons-outlined text-base">list</i>
+                <p>List journal</p>
+            </div>
+
+            <div class="flex flex-col gap-2 py-5">
+                @for (item of journals(); track $index) {
+                    <app-card-journal [journalItem]="item"></app-card-journal>
+                }
+            </div>
+        </div>
+    </div>
+</div>

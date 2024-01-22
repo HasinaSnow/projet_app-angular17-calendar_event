@@ -1,5 +1,5 @@
 import { Component, Input, Signal } from '@angular/core';
-import { Itask } from '../../interfaces/task.interface';
+import { ItaskItem } from '../../interfaces/task.interface';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -10,5 +10,5 @@ import { CommonModule } from '@angular/common';
   styleUrl: './card-task.component.scss'
 })
 export class CardTaskComponent {
-  @Input({required: true}) taskItem: Itask
+  @Input({required: true}) taskItem: ItaskItem
 }

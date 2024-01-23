@@ -5,6 +5,7 @@ import { SideMenuComponent } from './views/layouts/side-menu/side-menu.component
 import { HeaderComponent } from './views/layouts/header/header.component';
 import { SideCalendarComponent } from './views/layouts/side-calendar/side-calendar.component';
 import { initFlowbite } from 'flowbite';
+import { DashboardComponent } from './views/pages/dashboard/dashboard.component';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ import { initFlowbite } from 'flowbite';
     SideMenuComponent,
     HeaderComponent,
     SideCalendarComponent,
+    DashboardComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

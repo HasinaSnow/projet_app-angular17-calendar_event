@@ -10,7 +10,7 @@
 - manage (events, tasks, journal, members, equipments)
 
 ## dashboard
-- statistic
+- statistic [here]
   - reports (incomes, depenses, budgets, graphic chart)
   - assets (cash, bank, mobile money, graphic chart)
 - agenda (calendar, selection event)

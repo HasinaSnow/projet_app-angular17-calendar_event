@@ -1,0 +1,8 @@
+<nav class="flex flex-nowrap gap-1 justify-start items-center text-gray-700 text-xl mb-4" aria-label="Breadcrumb">
+    @for (item of crumbs(); track $index) {
+        <p class="flex items-center gap-1">
+            <i class="material-icons-outlined">{{item.icon || 'chevron_right'}}</i>
+            <span class="text-2xl pb-1">{{item.label}}</span>
+        </p>
+    }
+</nav>

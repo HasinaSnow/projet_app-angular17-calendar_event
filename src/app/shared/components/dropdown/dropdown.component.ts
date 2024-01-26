@@ -33,7 +33,7 @@ export class DropdownComponent implements OnInit {
 
   ngOnInit(): void {
     this.valueSelected.set(this.items.find(item => item.id == this.defaultValue) || {label: 'item 1', id: 1}) 
-    this.valueEmitted.emit(this.valueSelected())
+    // this.valueEmitted.emit(this.valueSelected())
     this.initOptions()
     this.showTypes.set(this.items.map(item => false))
   }

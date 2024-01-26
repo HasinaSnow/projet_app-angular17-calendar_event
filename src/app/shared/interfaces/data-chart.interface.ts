@@ -1,7 +1,9 @@
-export interface IDataChart {
-    data: number[],
+export interface IDataLineChart {
+    labels: string[],
+    datasets: IDataset[]
+}
+export interface IDataset {
     label: string,
-    color?: string,
-    bgColor?: string,
-    borderColor?: string
+    colors: string[],
+    datas: number[]
 }

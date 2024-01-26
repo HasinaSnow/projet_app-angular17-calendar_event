@@ -1,15 +1,15 @@
-<div id="#dropdown" class="relative {{ classStyle }} rounded-md shadow-sm hover:bg-gray-900 bg-gray-950 cursor-pointer">
-    <div (click)="toggleDropdown()" class="flex items-center gap-1 p-2">
+<div id="#dropdown" class="relative {{ classStyle }} border-b border-gray-900 text-sm text-gray-950 font-semibold cursor-pointer">
+    <div (click)="toggleDropdown()" class="flex items-center justify-between w-full hover:bg-gray-300 rounded-lg gap-1 p-1">
         @if (iconDropdown) {
             <i class="material-icons-outlined text-base">{{ iconDropdown }}</i>
         }
-        <span class="text-sm font-semibold">{{ valueSelected().label }}</span>
-        <i class="material-icons-outlined text-base">expand_more</i>
+        <span class="text-sm">{{ valueSelected().label }}</span>
+        <i class="material-icons-outlined">expand_more</i>
     </div>
     @if (showDropdown()) {
-        <div class="absolute top-11 right-0 bg-gray-950 p-2 flex flex-col gap-1 rounded z-50">
+        <div class="absolute top-11 right-0 text-gray-950 p-2 bg-white border border-gray-900 shadow flex flex-col gap-1 rounded z-50">
             @for (item of options; track $index) {
-                <div (click)="item.types ? toggleTypes($index) : onSelect(item)" class="relative flex items-center gap-1 hover:bg-gray-900 hover:text-gray-200 rounded p-2 text-nowrap text-end">
+                <div (click)="item.types ? toggleTypes($index) : onSelect(item)" class="relative flex items-center gap-1 hover:bg-gray-300 rounded p-2 text-nowrap text-end">
                     @if (item.icon) {
                         <i class="material-icons">{{ item.icon }}</i>
                     }
@@ -20,7 +20,7 @@
                             @if (showTypes()[$index]) {
                                 <div class="absolute top-0 right-[calc(100%+10px)] bg-gray-950 p-2 flex flex-col gap-1 rounded z-50">
                                     @for (type of item.types; track $index) {
-                                        <div (click)="onSelect(type)" class="flex items-center gap-1 hover:bg-gray-900 hover:text-gray-200 rounded p-2 text-nowrap text-end">
+                                        <div (click)="onSelect(type)" class="flex items-center gap-1 hover:bg-gray-300 rounded p-2 text-nowrap text-end">
                                             <i class="material-icons">{{ type.icon }}</i>
                                             <span class="text-sm font-semibold">{{ type.label }}</span>
                                         </div>

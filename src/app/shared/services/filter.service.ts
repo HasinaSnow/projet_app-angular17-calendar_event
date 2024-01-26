@@ -7,10 +7,9 @@ import { IItem } from '../interfaces/item.interface';
 export class FilterService {
 
   filterDateItems: IItem[] = [
-    {label: 'This day', id: 1},
-    {label: 'This week', id: 2},
-    {label: 'This month', id: 3},
-    {label: 'This year', id: 4},
+    {label: 'This week', id: 1},
+    {label: 'This month', id: 2},
+    {label: 'This year', id: 3},
   ]
 
   filterUserItems: IItem[] = [

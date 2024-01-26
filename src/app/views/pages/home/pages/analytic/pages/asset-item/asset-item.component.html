@@ -1,6 +1,6 @@
 <div class="event-items w-full flex flex-col">
     <!-- section -->
-    <div class="bg-gray-800 col-span-2 p-4 rounded-md">
+    <div class="col-span-2 p-4 rounded-md">
         <!-- header -->
         <p class="font-semibold text-xl mb-6">Global Assets :</p>
 
@@ -31,7 +31,7 @@
         </div>
         <!-- content -->
         <div class="content my-3 flex flex-col gap-4 max-h-72">
-            <app-chart-line [values]="assetChartValues()"></app-chart-line>
+            <app-chart-line [data]="assetChartValues()"></app-chart-line>
         </div>
     </div>
 

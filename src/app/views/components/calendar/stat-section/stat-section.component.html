@@ -1,1 +1,28 @@
-<p>stat-section works!</p>
+<div class="w-full">
+    <header class="flex items-center justify-between text-gray-800">
+        <!-- title -->
+        <p class="flex items-center gap-2 font-semibold text-2xl">
+            <i class="material-icons">query_stats</i>
+            Statistics
+        </p>
+
+        <div class="flex gap-3 items-center">
+            <!-- dropdown filer -->
+            <app-dropdown [items]="filterStats" (valueEmitted)="onChangeFilter($event)" [classStyle]="'min-w-28'"></app-dropdown>
+            <!-- buttons switch -->
+            <app-switch-btns [btnItems]="switchBtns" (valueEmitted)="onSwitchBtn($event)"></app-switch-btns>
+        </div>
+    </header>
+    <main class="">
+        @if (itemSwitched() == switchBtns[0]) {
+            <!-- reports items -->
+            <app-report-item></app-report-item>
+        } @else if (itemSwitched() == switchBtns[1]){
+            <!-- assets items -->
+            <app-asset-item></app-asset-item>
+        }
+    </main>
+    <footer>
+
+    </footer>
+</div>
